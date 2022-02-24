@@ -26,7 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_222620) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.string "body"
+    t.text "body"
+    t.string "tags"
     t.integer "likes"
     t.bigint "user_id", null: false
     t.bigint "promt_id", null: false
@@ -48,7 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_222620) do
     t.string "password_digest"
     t.string "bio"
     t.string "image_link"
-    t.string "role"
+    t.string "role", default: "User"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

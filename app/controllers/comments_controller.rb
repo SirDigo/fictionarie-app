@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show]
+    before_action :error_not_found, unless: :find_by_id, only: [:show, :destroy]
 
     #GET 
     def index
@@ -31,9 +32,11 @@ class CommentsController < ApplicationController
     private
 
     def find_by_id
-        @comment = comment.find_by(id: params{:id})
+        @comment = Comment.find_by(id: params[:id])
+    end
 
-        render json: { error: ["Comment not found"] }, status: :not_found, unless @comment
+    def error_not_found
+        render json: { error: ["Comment not found"] }, status: :not_found 
     end
 
     def comment_params

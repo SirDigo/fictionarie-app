@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
     skip_before_action :authorize, only: [:index, :show]
+    before_action :error_not_found, unless: :find_by_id, only: [:show, :update, :destroy]
 
     #GET 
     def index
@@ -8,7 +9,7 @@ class PostsController < ApplicationController
 
     #GET
     def show
-        render json: @post.all.to_json(include: :comments), status: :ok
+        render json: @post, status: :ok
     end
 
     #POST
@@ -37,12 +38,15 @@ class PostsController < ApplicationController
     private
 
     def find_by_id
-        @post = Post.find_by_id(id: params[:id])
+        @post = Post.find_by(id: params[:id])
+    end
 
-        render json: { error: ["Post not found"] }, status: :not_found, unless @post
+    def error_not_found
+        render json: { error: ["Post not found"] }, status: :not_found 
     end
 
     def post_params
         params.permit(:title, :body, :likes)
     end
+    
 end
