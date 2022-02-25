@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get  '/me', to: 'users#show_me'
 
+  get '/posts/:id/comments', to: 'comments#get_post_comments'
 end
