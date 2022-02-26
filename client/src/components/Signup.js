@@ -61,7 +61,7 @@ function Signup({ setUser }){
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
-            <button type="submit">submit</button>
+            <button type="submit">Signup</button>
             {errors.map((err) => (
                 <p key={err}>{err}</p>
             ))}
