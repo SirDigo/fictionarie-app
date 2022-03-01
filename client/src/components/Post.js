@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
 
 import Comment from "./Comment"
+import ProfileImage from "../download.png"
 
 function Post({ post }){
 
-    // console.log(post)
     const [showComments, setShowComments] = useState(false)
     const [comments, setComments] = useState([])
+
+    const userPic = post.user.image_link
 
     function handleShowComments(){
         showComments ? 
@@ -25,12 +27,20 @@ function Post({ post }){
         })
     };
 
-    // console.log(comments)
+    function handleRouteChange(){
+        window.location.replace(`/profile/${post.user.id}`)
+    }
 
     return (
         <div>
             <header>
                 {/* <h3>{post.user.username}</h3> */}
+                { 
+                    userPic ? 
+                    <img src={userPic} alt={post.user.username} onClick={handleRouteChange}/> 
+                    : 
+                    <img src={ProfileImage} alt="Defualt Pic" onClick={handleRouteChange}/>    
+                }
                 <h1>{post.title} by: {post.user.username}</h1>
             </header>
             <h4>{post.body}</h4>

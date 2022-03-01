@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :tags
       t.integer :likes
       t.belongs_to :user, null: false, foreign_key: true
-      t.belongs_to :promt, null: false, foreign_key: true
+      t.belongs_to :prompt, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -18,7 +18,10 @@ function Login({ setUser }){
         }).then((r) => {
             //setisloading to false here!
             if (r.ok) {
-                r.json().then((user) => setUser(user));
+                r.json().then((user) => {
+                    setUser(user)
+                    window.location.replace('/')
+                });
             } else {
                 r.json().then((err) => setErrors(err.errors));
             }

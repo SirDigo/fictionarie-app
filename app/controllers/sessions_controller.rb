@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
     
     #DELETE /logout
     def destroy
-      session[:user_id] = nil
-      head :no_content
+      session.delete :user_id
+      # byebug
     end
 
 end

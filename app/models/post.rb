@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user 
-  belongs_to :promt
+  belongs_to :prompt
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 50, minimum: 1 }
