@@ -16,16 +16,22 @@ function Home({ user, setUser }){
     const date = `${current.getMonth()+1}${current.getDate()}${current.getFullYear()}`;
 
     useEffect(() => {
-        //Fetching posts
-        fetch("/posts")
+        //fetching daily prompt
+        fetch(`/daily_prompt/${date}`)
         .then((r) => r.json())
-        .then(data => setPosts(data))
-
-        fetch(`/prompts/${date}`)
-        .then((r) => r.json())
-        .then(data => setPrompt(data))
+        .then(data => {
+            setPrompt(data)
+            fetchPosts(data.id)
+        })
     }, []);
 
+    //Fetching posts after fetching daily Prompt
+    function fetchPosts(promptId){
+        fetch(`/prompts/${promptId}/posts`)
+        .then((r) => r.json())
+        .then(data => setPosts(data))
+    }
+    
     function logout(){
         fetch("/logout", {
             method: "DELETE",

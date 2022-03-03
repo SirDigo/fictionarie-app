@@ -8,7 +8,12 @@ class PromptsController < ApplicationController
 
     #GET
     def show
-        render json: Prompt.last, status: :ok
+        prompt = Prompt.find_by(id: params[:id])
+        if prompt
+            render json: prompt, status: :ok
+        else
+            render json: { error: ["Prompt not found"] }, status: :not_found
+        end
     end
 
     #GET by date
