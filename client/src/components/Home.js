@@ -11,20 +11,20 @@ function Home({ user, setUser }){
     const [posts, setPosts] = useState([])
     const [prompt, setPrompt] = useState({})
 
+    // month/day/year
+    const current = new Date();
+    const date = `${current.getMonth()+1}${current.getDate()}${current.getFullYear()}`;
+
     useEffect(() => {
         //Fetching posts
         fetch("/posts")
         .then((r) => r.json())
         .then(data => setPosts(data))
 
-        fetch("/last_promt")
+        fetch(`/prompts/${date}`)
         .then((r) => r.json())
         .then(data => setPrompt(data))
     }, []);
-
-    const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-    console.log(date === "2/3/2022")
 
     function logout(){
         fetch("/logout", {

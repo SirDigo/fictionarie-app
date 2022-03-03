@@ -24,7 +24,7 @@ function PostForm({ user, prompt, setPosts, posts }){
                 title: title , 
                 body: body, 
                 user_id: user.id,
-                prompt_id: posts.id,
+                prompt_id: prompt.id,
             }),
         }).then((r) => {
             //setisloading to false here!
