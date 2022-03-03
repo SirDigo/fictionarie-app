@@ -50,6 +50,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.permit(:body)
+        params.permit(:body, :post_id, :user_id)
     end
 end

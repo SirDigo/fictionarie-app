@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { Card, Button, Modal } from 'react-bootstrap'
 
 import Comment from "./Comment"
 import ProfileImage from "../download.png"
+import CommentForm from "./CommentForm";
 
-function Post({ post }){
+function Post({ post, user }){
 
     const [showComments, setShowComments] = useState(false)
     const [comments, setComments] = useState([])
+    const [showForm, setShowForm] = useState(false)
+
+    //for bootstrap modals
+    const [show, setShow] = useState(false)
 
     const userPic = post.user.image_link
 
@@ -31,31 +37,41 @@ function Post({ post }){
         window.location.replace(`/profile/${post.user.id}`)
     }
 
+    function changeToSignup(){
+        window.location.replace("/signup")
+    }
+
+    const cutPostBody = post.body.slice(0, 65)
+
     return (
-        <div>
-            <header>
-                {/* <h3>{post.user.username}</h3> */}
-                { 
-                    userPic ? 
-                    <img src={userPic} alt={post.user.username} onClick={handleRouteChange}/> 
-                    : 
-                    <img src={ProfileImage} alt="Defualt Pic" onClick={handleRouteChange}/>    
-                }
-                <h1>{post.title} by: {post.user.username}</h1>
-            </header>
-            <h4>{post.body}</h4>
-            <p>{post.likes}</p>
-            <button onClick={handleShowComments}>{!showComments ? "Show Comments" : "Hide Comments"}</button>
-            {
-                showComments ? 
-                comments.map((comment) => 
-                <Comment key={uuid()} comment={comment}/>) :
-                //Filler
-                <></>
-            }
-            <br></br>
-            <br></br>
-        </div>
+        <>
+        <Card style={{ width: '18rem' }}>
+            
+            <Card.Img variant="top" src={ userPic ? userPic : ProfileImage }  onClick={handleRouteChange}/>
+            <Card.Body>
+                <Card.Title>{post.title}</Card.Title>
+                <Card.Text>{cutPostBody}...</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+                <Button variant="primary" onClick={() => setShow(true)}>Read More</Button>
+                {/* <Button variant="secondary" onClick={handleShowComments}>{!showComments ? "Show" : "Hide"} Comments</Button>
+                <Button variant="secondary" onClick={user ? handleSwitch : changeToSignup}>{showForm ? "X" : "Comment"}</Button> */}
+            </Card.Footer>
+        </Card>
+
+        <Modal show={show} onHide={() => setShow(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>{post.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{post.body}</Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => setShow(false)}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>  
+        <br></br>
+        </>
     )
 }
 

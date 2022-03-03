@@ -1,5 +1,5 @@
 class PromptsController < ApplicationController
-    skip_before_action :authorize, only: [:show, :index]
+    skip_before_action :authorize, only: [:show, :index, :render_prompt_by_date]
     
     #GET
     def index
@@ -9,6 +9,16 @@ class PromptsController < ApplicationController
     #GET
     def show
         render json: Prompt.last, status: :ok
+    end
+
+    #GET by date
+    def render_prompt_by_date
+        prompt = Prompt.find_by(day_title: params[:day_title])
+        if prompt
+            render json: prompt, status: :ok
+        else
+            render json: { errors: ["Prompt not found"] }, status: :not_found
+        end
     end
 
     #POST

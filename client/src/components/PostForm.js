@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { Form, Button } from 'react-bootstrap'
+// import { useParams } from "react-router-dom";
 
-function PostForm({ user, prompt }){
+function PostForm({ user, prompt, setPosts, posts }){
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     // const [tags, setTags] = useState("");
     const [errors, setErrors] = useState([]);
 
+    // const { user } = useParams()
 
     //title, body, tags
     function handleSubmit(e){
@@ -20,14 +23,14 @@ function PostForm({ user, prompt }){
             body: JSON.stringify({ 
                 title: title , 
                 body: body, 
-                user_id: user.id, 
-                prompt_id: prompt.id,
+                user_id: user.id,
+                prompt_id: posts.id,
             }),
         }).then((r) => {
             //setisloading to false here!
             if (r.ok) {
-                r.json().then((post) => {
-                    console.log(post)
+                r.json().then((newPost) => {
+                    setPosts([...posts, newPost])
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));
@@ -35,31 +38,32 @@ function PostForm({ user, prompt }){
         });
     }
 
+    // console.log(user.id, prompt.id)
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="title">Title</label>
-                <input 
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>Title</Form.Label>
+                <Form.Control 
                     type="text"
-                    id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-            </div>
-            <div>
-                <label htmlFor="story">Story</label>
-                <input
-                    type="text"
-                    id="story"
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Story</Form.Label>
+                <Form.Control
+                    as="textarea"
+                    rows={3}
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-            </div>
-            <button type="submit">Submit</button>
+            </Form.Group>
+            <Button type="submit">Submit</Button>
             {errors.map((err) => (
                 <p key={err}>{err}</p>
             ))}
-        </form>
+        </Form>
     )
 }
 

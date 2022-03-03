@@ -10,7 +10,6 @@ import Home from "./components/Home"
 import About from "./components/About"
 import NoPage from "./components/NoPage"
 import EditProfile from "./components/EditProfile"
-import PostForm from "./components/PostForm";
 
 function App() {
 
@@ -24,6 +23,7 @@ function App() {
             };
         });
 
+        
 
     }, [])
 
@@ -35,7 +35,7 @@ function App() {
                     <Route path="about" element={<About />} />
                     <Route path="signup" element={<Signup setUser={setUser}/>} />
                     <Route path="login" element={<Login setUser={setUser}/>} />
-                    <Route path="profile/:id" element={<Profile />} />
+                    <Route path="profile/:id" element={<Profile user={user}/>} />
                     { user ? 
                     <>
                         <Route path="my_profile" element={<MyProfile user={user} />}/>
