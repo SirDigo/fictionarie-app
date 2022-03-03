@@ -11,21 +11,27 @@ function Home({ user, setUser }){
     const [posts, setPosts] = useState([])
     const [prompt, setPrompt] = useState({})
 
-    useEffect(() => {
-        //Fetching posts
-        fetch("/posts")
-        .then((r) => r.json())
-        .then(data => setPosts(data))
+    // month/day/year
+    const current = new Date();
+    const date = `${current.getMonth()+1}${current.getDate()}${current.getFullYear()}`;
 
-        fetch("/last_promt")
+    useEffect(() => {
+        //fetching daily prompt
+        fetch(`/daily_prompt/${date}`)
         .then((r) => r.json())
-        .then(data => setPrompt(data))
+        .then(data => {
+            setPrompt(data)
+            fetchPosts(data.id)
+        })
     }, []);
 
-    const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-    console.log(date === "2/3/2022")
-
+    //Fetching posts after fetching daily Prompt
+    function fetchPosts(promptId){
+        fetch(`/prompts/${promptId}/posts`)
+        .then((r) => r.json())
+        .then(data => setPosts(data))
+    }
+    
     function logout(){
         fetch("/logout", {
             method: "DELETE",

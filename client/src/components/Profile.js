@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 
 import ProfileImage from "../download.png"
+import Post from "./Post";
 
 function Profile(){
     const { id } = useParams()
@@ -13,7 +14,7 @@ function Profile(){
     useEffect(() => {
         fetch(`/users/${id}`)
         .then((res) => res.json())
-        .then((userDate) => setThisUser(userDate))
+        .then((userData) => setThisUser(userData))
     }, [id])
 
     // thisUser.posts.map(post => console.log(post))
@@ -32,7 +33,8 @@ function Profile(){
                 <div key={uuid()}>
                     <h1>{post.title}</h1>
                     <h4>{post.body}</h4>
-                </div>)}
+                </div>
+                )}
 
         </div>
     )

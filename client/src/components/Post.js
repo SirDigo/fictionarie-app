@@ -10,7 +10,7 @@ function Post({ post, user }){
 
     const [showComments, setShowComments] = useState(false)
     const [comments, setComments] = useState([])
-    const [showForm, setShowForm] = useState(false)
+    // const [showForm, setShowForm] = useState(false)
 
     //for bootstrap modals
     const [show, setShow] = useState(false)
@@ -53,7 +53,8 @@ function Post({ post, user }){
                 <Card.Text>{cutPostBody}...</Card.Text>
             </Card.Body>
             <Card.Footer>
-                <Button variant="primary" onClick={() => setShow(true)}>Read More</Button>
+                <Button variant="primary" onClick={() => { setShow(true); handleShowComments()}}>Read More</Button>
+                <Button variant="btn">like button</Button>
                 {/* <Button variant="secondary" onClick={handleShowComments}>{!showComments ? "Show" : "Hide"} Comments</Button>
                 <Button variant="secondary" onClick={user ? handleSwitch : changeToSignup}>{showForm ? "X" : "Comment"}</Button> */}
             </Card.Footer>
@@ -65,9 +66,10 @@ function Post({ post, user }){
             </Modal.Header>
             <Modal.Body>{post.body}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => setShow(false)}>
-                    Close
-                </Button>
+                <Modal.Body><Modal.Title>Comments</Modal.Title></Modal.Body>
+                <Modal.Body>{comments.map(comment => <Comment key={uuid()} comment={comment} />)}</Modal.Body>
+                <Modal.Body><CommentForm user={user} post={post} setComments={setComments} comments={comments}/></Modal.Body>
+                <Button variant="secondary" onClick={() => setShow(false)}>Close</Button>
             </Modal.Footer>
         </Modal>  
         <br></br>

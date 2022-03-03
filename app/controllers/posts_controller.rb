@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show, :get_prompt_posts]
     before_action :error_not_found, unless: :find_by_id, only: [:show, :update, :destroy]
 
     #GET 
@@ -10,6 +10,16 @@ class PostsController < ApplicationController
     #GET
     def show
         render json: @post, status: :ok
+    end
+
+    #GET /prompts/:id/posts
+    def get_prompt_posts
+        posts = Post.where(prompt_id: params[:id])
+        if posts
+            render json: posts, status: :ok
+        else
+            render json: { error: ["Post(s) not found"] }, status: :not_found
+        end
     end
 
     #POST
