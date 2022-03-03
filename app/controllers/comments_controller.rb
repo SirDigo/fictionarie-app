@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show]
+    skip_before_action :authorize, only: [:index, :show, :get_post_comments]
     before_action :error_not_found, unless: :find_by_id, only: [:show, :destroy]
 
     #GET 
@@ -10,6 +10,16 @@ class CommentsController < ApplicationController
     #GET
     def show 
         render json: @comment, status: :ok
+    end
+
+    #GET /posts/:id/comments
+    def get_post_comments
+        comments = Comment.where(post_id: params[:id])
+        if comments
+            render json: comments, status: :ok
+        else
+            render json: { error: ["Comment(s) not fuond"] }, status: :not_found
+        end
     end
 
     #POST
@@ -40,6 +50,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.permit(:body)
+        params.permit(:body, :post_id, :user_id)
     end
 end

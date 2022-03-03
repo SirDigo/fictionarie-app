@@ -1,4 +1,4 @@
-class Promt < ApplicationRecord
+class Prompt < ApplicationRecord
     has_many :posts
 
     validates :day_title, presence: true
