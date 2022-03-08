@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Form, Button } from 'react-bootstrap'
+
 
 function Signup({ setUser, setShowSignUp }){
 
@@ -35,40 +37,40 @@ function Signup({ setUser, setShowSignUp }){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input 
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="shadow-sm mb-3">
+                <Form.Control 
                     type="text"
                     id="username"
                     value={username}
+                    placeholder="Username..."
                     onChange={(e) => setUsername(e.target.value)}
                 />
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input
+            </Form.Group>
+            <Form.Group className="shadow-sm mb-3">
+                <Form.Control
                     type="password"
                     id="password"
                     value={password}
+                    placeholder="Password..."
                     onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
+            </Form.Group>
             {/*Add password confirmation here!*/}
-            <div>
-                <label htmlFor="email">Email</label>
-                <input 
+            <Form.Group className="shadow-sm mb-3">
+                <Form.Control 
                     type="text"
                     id="email"
                     value={email}
+                    placeholder="Email..."
                     onChange={(e) => setEmail(e.target.value)}
                 />
-            </div>
-            <button type="submit">Signup</button>
+            </Form.Group>
+            <Button variant="secondary" type="submit">Signup</Button>
             {errors.map((err) => (
                 <p key={err}>{err}</p>
             ))}
-        </form>
+        </Form>
     )
 
 }

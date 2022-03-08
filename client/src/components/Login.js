@@ -37,6 +37,7 @@ function Login({ setUser, setShowLogin }){
                     type="text"
                     id="username"
                     value={username}
+                    placeholder="Username..."
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </Form.Group>
@@ -45,6 +46,7 @@ function Login({ setUser, setShowLogin }){
                     type="password"
                     id="password"
                     value={password}
+                    placeholder="Password..."
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </Form.Group>
