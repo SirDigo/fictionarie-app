@@ -26,7 +26,6 @@ function Signup({ setUser }){
             if (r.ok) {
                 r.json().then((user) => {
                     setUser(user)
-                    window.location.replace('/')
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));

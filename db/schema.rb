@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_22_222620) do
     t.text "body"
     t.string "tags"
     t.integer "likes"
+    t.date "date_made"
     t.bigint "user_id", null: false
     t.bigint "prompt_id", null: false
     t.datetime "created_at", null: false

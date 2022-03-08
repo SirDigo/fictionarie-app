@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from 'react-bootstrap'
 
 function Login({ setUser }){
     const [username, setUsername] = useState("");
@@ -19,8 +20,8 @@ function Login({ setUser }){
             //setisloading to false here!
             if (r.ok) {
                 r.json().then((user) => {
+                    // console.log(user)
                     setUser(user)
-                    window.location.replace('/')
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));
@@ -29,31 +30,29 @@ function Login({ setUser }){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username</label>
-                <input 
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="shadow-sm mb-3">
+                <Form.Control 
                     type="text"
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-            </div>
-            <div>
-                <label htmlFor="password">Password</label>
-                <input
+            </Form.Group>
+            <Form.Group className="shadow-sm mb-3">
+                <Form.Control
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
+            </Form.Group>
             {/*Add password confirmation here!*/}
-            <button type="submit">Login</button>
+            <Button variant="secondary" type="submit">Login</Button>
             {errors.map((err) => (
-                <p key={err}>{err}</p>
+                <p key={err} style={{color: "#f73528"}}>{err}</p>
             ))}
-        </form>
+        </Form>
     )
 
 }

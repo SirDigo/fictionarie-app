@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get '/daily_prompt/:day_title', to: 'prompts#render_prompt_by_date'
 
-
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   get  '/me', to: 'users#show_me'
 
   get '/prompts/:id/posts', to: 'posts#get_prompt_posts'
+  get '/users/:id/posts', to: 'posts#get_user_posts'
 
   get '/posts/:id/comments', to: 'comments#get_post_comments'
 end

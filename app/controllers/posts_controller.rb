@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :show, :get_prompt_posts]
+    skip_before_action :authorize, only: [:index, :show, :get_prompt_posts, :get_user_posts]
     before_action :error_not_found, unless: :find_by_id, only: [:show, :update, :destroy]
 
     #GET 
@@ -16,7 +16,17 @@ class PostsController < ApplicationController
     def get_prompt_posts
         posts = Post.where(prompt_id: params[:id])
         if posts
-            render json: posts, status: :ok
+            render json: posts.all.order("created_at DESC"), status: :ok
+        else
+            render json: { error: ["Post(s) not found"] }, status: :not_found
+        end
+    end
+
+    #GET /users/:id/posts
+    def get_user_posts
+        posts = Post.where(user_id: params[:id])
+        if posts
+            render json: posts.all.order("created_at DESC"), status: :ok
         else
             render json: { error: ["Post(s) not found"] }, status: :not_found
         end
@@ -57,7 +67,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.permit(:title, :body, :likes, :user_id, :prompt_id)
+        params.permit(:title, :body, :likes, :user_id, :prompt_id, :created_at)
     end
     
 end

@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.text :body
       t.string :tags
       t.integer :likes
+      t.date :date_made
       t.belongs_to :user, null: false, foreign_key: true
       t.belongs_to :prompt, null: false, foreign_key: true
 

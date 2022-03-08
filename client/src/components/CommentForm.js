@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Button } from 'react-bootstrap'
 
 function CommentForm({ user, post, setComments, comments }){
     const [body, setBody] = useState("")
@@ -31,21 +32,37 @@ function CommentForm({ user, post, setComments, comments }){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="Comment">Comment</label>
-                <input
-                    type="Comment"
-                    id="story"
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                />
-            </div>
-            <button type="submit">Add</button>
+        <Form onSubmit={handleSubmit}>
+            { user ?           
+                <Form.Group>
+                    <Form.Control
+                        className="shadow-sm"
+                        type="Comment"
+                        id="story"
+                        placeholder="Comment..."
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                    />
+                    <Button variant="secondary" type="submit" style={{margin: "5px"}}>Add</Button>
+                </Form.Group> 
+                :
+                <fieldset disabled>
+                    <Form.Group>
+                        <Form.Control
+                            className="shadow-sm"
+                            type="Comment"
+                            id="story"
+                            placeholder="Log in to Comment..."
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                        />
+                    </Form.Group>
+                </fieldset> 
+            }
             {errors.map((err) => (
                 <p key={err}>{err}</p>
             ))}
-        </form>
+        </Form>
     )
 }
 

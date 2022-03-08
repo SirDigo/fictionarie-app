@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { Button } from "react-bootstrap";
+
 import ProfileImage from "../download.png"
 import Post from "./Post";
-
+import EditProfile from "./EditProfile";
 
 function MyProfile({ user }){
 
@@ -10,12 +12,10 @@ function MyProfile({ user }){
 
     return (
         <div>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/edit_profile">Edit Profile</a>
-            </nav>
             <p>Hello {user.username}</p>
-            <img src={ProfileImage} alt="User"/>
+            <img src={user.image_link ? user.image_link : ProfileImage} alt="User"/>
+            <Button varient="primary" onClick={() => setEditor(true)}>Edit Profile</Button>
+            <EditProfile user={user} show={editor} onHide={() => setEditor(false)} />
             <p>
                 {user.bio ? user.bio : "404 bio not found"}
             </p>
