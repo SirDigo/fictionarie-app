@@ -42,6 +42,7 @@ function CommentForm({ user, post, setComments, comments }){
                         id="story"
                         placeholder="Comment..."
                         value={body}
+                        maxLength={250}
                         onChange={(e) => setBody(e.target.value)}
                     />
                     <Button variant="secondary" type="submit" style={{margin: "5px"}}>Add</Button>
