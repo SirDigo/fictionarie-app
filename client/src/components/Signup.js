@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
 
 
-function Signup({ setUser, setShowSignUp }){
+function Signup({ setUser, setShowSignUp, setIsLoading }){
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -12,7 +12,7 @@ function Signup({ setUser, setShowSignUp }){
     function handleSubmit(e){
         e.preventDefault()
         setErrors([]);
-        //add setIsLoading here!
+        setIsLoading(true)
         fetch("/signup", {
             method: "POST",
             headers: {
@@ -24,7 +24,7 @@ function Signup({ setUser, setShowSignUp }){
                 email,
             }),
         }).then((r) => {
-            //setisloading to false here!
+            setIsLoading(false)
             if (r.ok) {
                 r.json().then((user) => {
                     setUser(user)

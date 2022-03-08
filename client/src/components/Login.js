@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
 
-function Login({ setUser, setShowLogin }){
+import LoadingScreen from "./LoadingScreen";
+
+function Login({ setUser, setShowLogin, setIsLoading }){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -9,7 +11,7 @@ function Login({ setUser, setShowLogin }){
     function handleSubmit(e){
         e.preventDefault()
         setErrors([]);
-        //add setIsLoading here!
+        setIsLoading(true)
         fetch("/login", {
             method: "POST",
             headers: {
@@ -17,10 +19,9 @@ function Login({ setUser, setShowLogin }){
             },
             body: JSON.stringify({ username, password }),
         }).then((r) => {
-            //setisloading to false here!
+            setIsLoading(false)
             if (r.ok) {
                 r.json().then((user) => {
-                    // console.log(user)
                     setUser(user)
                     setShowLogin(false)
                 });
