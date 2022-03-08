@@ -34,18 +34,17 @@ function Profile(){
     return (
         <Container>
             <Row style={{marginTop: "100px", marginBottom: "150px"}}>
-                <Col >
-                    <h2>{thisUser.username}</h2>
+                <Col>
+                    <h2 style={{color: "#FFB100"}}>{thisUser.username}</h2>
                     <Image roundedCircle src={ProfileImage} alt="User" /> 
                 </Col> 
                 <Col style={{marginTop: "100px"}}>
-                    <h2>{thisUser.bio ? thisUser.bio : "404 bio not found"}</h2>
+                    <h3>{thisUser.bio ? thisUser.bio : "404 bio not found"}</h3>
                 </Col>
             </Row>
             <Row md={3} className="g-4">
                 {thisUsersPosts.map((post) => <Post key={uuid()} post={post} user={thisUser}/>)}
             </Row>
-
         </Container>
     )
 }

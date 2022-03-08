@@ -24,6 +24,7 @@ function CommentForm({ user, post, setComments, comments }){
             if (r.ok) {
                 r.json().then((newComment) => {
                     setComments([...comments, newComment])
+                    setBody("")
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));

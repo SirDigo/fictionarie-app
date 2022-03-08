@@ -4,10 +4,10 @@ import { Button, Modal, Form } from "react-bootstrap";
 function EditProfile(props){
     const user = props.user
 
-    const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
-    const [profilePic, setProfilePic] = useState("")
-    const [bio, setBio] = useState("")
+    const [username, setUsername] = useState(user.username)
+    const [email, setEmail] = useState(user.email)
+    // const [profilePic, setProfilePic] = useState("")
+    const [bio, setBio] = useState(user.bio ? user.bio : "404 bio not found.")
     const [errors, setErrors] = useState([])
     
     function handleSubmit(e){
@@ -22,13 +22,14 @@ function EditProfile(props){
             body: JSON.stringify({ 
                 username: username,
                 bio: bio,
-                image_link: profilePic,
+                // image_link: profilePic,
                 email: email,
             }),
         }).then((r) => {
             //setisloading to false here!
             if (r.ok) {
                 r.json()
+                window.location.reload(false);
             } else {
                 r.json().then((err) => setErrors(err.errors));
             }
@@ -62,7 +63,7 @@ function EditProfile(props){
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group controlId="formFile" className="mb-3">
+            {/* <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Profile Pic</Form.Label>
                 <Form.Control 
                     type="file" 
@@ -70,7 +71,7 @@ function EditProfile(props){
                     name="myImage"
                     onChange={(e) => setProfilePic(e.target.files[0])}
                 />
-            </Form.Group> 
+            </Form.Group>  */}
             <Form.Group className="mb-3">
                 <Form.Label>Bio</Form.Label>
                 <Form.Control 

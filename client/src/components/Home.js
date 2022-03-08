@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Post from "./Post"
 import PostForm from "./PostForm"
 
-function Home({ user }){
+function Home({ user, userPosts }){
 
     const [posts, setPosts] = useState([])
     const [prompt, setPrompt] = useState({})
@@ -19,8 +19,7 @@ function Home({ user }){
     // const promptDate = new Date(prompt.created_at)
 
     //current user's posts
-    const userPosts = user ? user.posts : []
-
+    // const userPosts = user ? user.posts : []
 
     useEffect(() => {
         //fetching daily prompt

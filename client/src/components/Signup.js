@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Signup({ setUser }){
+function Signup({ setUser, setShowSignUp }){
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +26,7 @@ function Signup({ setUser }){
             if (r.ok) {
                 r.json().then((user) => {
                     setUser(user)
+                    setShowSignUp(false)
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));

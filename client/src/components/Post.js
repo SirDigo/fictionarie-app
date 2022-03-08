@@ -17,14 +17,13 @@ function Post({ post, user }){
     const userPic = post.user.image_link
 
     function handleShowComments(){
-        // showComments ? 
-        // setShowComments(false) :
+        setCommentsLoading(true)
         fetch(`/posts/${post.id}/comments`)
         .then(r => r.json())
             .then(data => {
+                setCommentsLoading(false)
                 if (data !== []) {                
                     setComments(data)
-                    setCommentsLoading(false)
                     // setShowComments(true)
                 } /* else {
                     setComments([{body: "No comments!", user: "Bot"}])
@@ -33,7 +32,7 @@ function Post({ post, user }){
             })
     };
 
-    // const d = new Date( post.created_at )
+    const postDate = new Date( post.created_at )
     // console.log(d.toDateString())
 
     function handleRouteChange(){
@@ -64,7 +63,9 @@ function Post({ post, user }){
                 <Modal.Header closeButton>
                     <Modal.Title >{post.title} by {post.user.username}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="h3" style={{backgroundColor: "#f9f9f9"}}>{post.body}</Modal.Body>
+                <Modal.Body className="h3" style={{backgroundColor: "#f9f9f9"}}>
+                    <h5 style={{color: "#FFB100"}} className="pl-2">{postDate.toDateString()}</h5>
+                    {post.body}</Modal.Body>
                 <Modal.Footer>
                     <Modal.Body>{
                         commentsLoading ?

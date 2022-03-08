@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
 
-function Login({ setUser }){
+function Login({ setUser, setShowLogin }){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -22,6 +22,7 @@ function Login({ setUser }){
                 r.json().then((user) => {
                     // console.log(user)
                     setUser(user)
+                    setShowLogin(false)
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));

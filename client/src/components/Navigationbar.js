@@ -37,7 +37,7 @@ function Navigationbar({ user, logout, setUser }){
                     <Modal.Title>Login</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Login setUser={setUser}/>
+                <Login setShowLogin={setShowLogin} setUser={setUser}/>
             </Modal.Body>
         </Modal>
 
@@ -46,7 +46,7 @@ function Navigationbar({ user, logout, setUser }){
                     <Modal.Title>Signup</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Signup setUser={setUser}/>
+                <Signup setShowSignUp={setShowSignUp} setUser={setUser}/>
             </Modal.Body>
         </Modal>
         </>

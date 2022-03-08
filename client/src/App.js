@@ -15,12 +15,16 @@ import Navigationbar from "./components/Navigationbar";
 function App() {
 
     const [user, setUser] = useState(null)
+    const [userPosts, setUserPosts] = useState([])
 
     useEffect(() => {
         //User Auth
         fetch("/me").then((r) => {
             if (r.ok) {
-                r.json().then((user) => setUser(user));
+                r.json().then((user) => { 
+                    setUser(user)
+                    setUserPosts(user.posts)
+                });
             };
         });
     }, [])
@@ -37,7 +41,7 @@ function App() {
             <Navigationbar logout={logout} user={user} setUser={setUser}/>
             <BrowserRouter>
                 <Routes path="/">
-                    <Route index element={<Home setUser={setUser} user={user} />} />
+                    <Route index element={<Home userPosts={userPosts} setUser={setUser} user={user} />} />
                     <Route path="about" element={<About />} />
                     {/* <Route path="signup" element={<Signup setUser={setUser}/>} />
                     <Route path="login" element={<Login setUser={setUser}/>} /> */}
