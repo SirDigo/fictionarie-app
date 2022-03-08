@@ -58,15 +58,18 @@ function Home({ user, userPosts }){
         <>
         {/* <Navigationbar user={user} logout={logout} setUser={setUser}/> */}
         <Container>
-            <Row style={{marginTop: "125px", marginBottom: "150px"}}>
+            <Row style={{marginTop: "100px", marginBottom: "100px"}}>
                 <Col>
                     <h1 className="d-flex justify-content-start" style={{color: "#FFB100"}}>Fictionarie_</h1>
                     <h5 className="d-flex justify-content-start">A prompt a day to fual your creativity...</h5>
                     <br></br>
-                    <h4 className="d-flex justify-content-start" style={{color: "#B9B9B9"}}>{current.toDateString()}</h4>
-                    <h4 className="d-flex justify-content-start" style={{color: "#B9B9B9"}}>{prompt.body}</h4>
+                    <h4 style={{color: "#FFB100"}}>{prompt.body}</h4>
+                    <h5 className="d-flex justify-content-start">{current.toDateString()}</h5>
                 </Col>
-                <Col><PostForm prompt={prompt} user={user} setPosts={setPosts} posts={posts} checkIfPosted={checkIfPosted}/></Col>
+                <Col>
+                    <h2 style={{color: "#FFB100"}}>Write Story Below!</h2>
+                    <PostForm prompt={prompt} user={user} setPosts={setPosts} posts={posts} checkIfPosted={checkIfPosted}/>
+                </Col>
             </Row>
             <Row md={3} className="g-4">
                 {posts.map((post) => <Post key={uuid()} post={post} user={user}/>)}
