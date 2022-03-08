@@ -55,7 +55,7 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
                     placeholder="Title..."
                     onChange={(e) => setTitle(e.target.value)}
                     /> :
-                    <Form.Control value={title} placeholder={user ? "Limit reached..." : "Login first!"} disabled/>
+                    <Form.Control value={title} placeholder={user ? "Limit reached..." : "Login/Signup first!"} disabled/>
                 }
             </Form.Group>
             <Form.Group className="shadow-sm mb-3">
@@ -67,7 +67,7 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
                         placeholder="Tags..."
                         onChange={(e) => setTags(e.target.value)}
                     /> :
-                    <Form.Control value={tags} placeholder={user ? "Tags will be here tommorow..." : "Login for tags!"} disabled/>
+                    <Form.Control value={tags} placeholder={user ? "Tags will be here tommorow..." : "Login/Signup for tags!"} disabled/>
                 }
             </Form.Group>
             <Form.Group >
@@ -87,12 +87,16 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
                     <p style={{textAlign: "right", color: "#B9B9B9"}}>{counter}/2500</p>
                     </>
                     :
-                    <Form.Control as="textarea" rows={3} value={body} placeholder={user ? "Take a break from writing for today..." : "Login to write!"} disabled/>
+                    <>
+                    <Form.Control as="textarea" rows={3} value={body} placeholder={user ? "Take a break from writing for today..." : "Login/Signup to write!"} disabled/>
+                    <p style={{textAlign: "right", color: "#B9B9B9"}}>Login/Signup for counter :(</p>
+                    </>
+
                 }
             </Form.Group>
             {   user && !checkIfPosted() ? 
                 <Button variant="secondary" type="submit">Submit</Button> :
-                <Button variant="secondary" type="submit" disabled>{ user ? "No Submiting for the rest of today!" : "This isn't the login button." }</Button>
+                <Button variant="secondary" type="submit" disabled>{ user ? "No Submiting for the rest of today!" : "This isn't the login/signup button." }</Button>
             }
             {errors.map((err) => (
                 <p key={err}>{err}</p>
