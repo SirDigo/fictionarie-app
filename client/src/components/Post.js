@@ -39,13 +39,13 @@ function Post({ post, user }){
         window.location.replace(`/profile/${post.user.id}`)
     }
 
-    const cutPostBody = post.body.slice(0, 65)
+    const cutPostBody = post.body.slice(0, 100)
 
     return (
         <Col className="d-flex justify-content-center" >
             <Card className="shadow-sm" style={{ width: '18rem', backgroundColor: "#f9f9f9" }}>
                 <div style={{padding: "10px"}}>
-                    <Image roundedCircle  width="150" src={ userPic ? userPic : ProfileImage }  onClick={handleRouteChange}/>
+                    <Image roundedCircle  width="75" src={ userPic ? userPic : ProfileImage }  onClick={handleRouteChange}/>
                 </div>
                 <Card.Body>
                     <Card.Title style={{color: "#FFB100"}}>{post.title}</Card.Title>
@@ -61,7 +61,12 @@ function Post({ post, user }){
 
             <Modal show={show} onHide={() => setShow(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title >{post.title} by {post.user.username}</Modal.Title>
+                    <Modal.Title >
+                        {/* {post.title} by {post.user.username} */}
+                        <span>{post.title}</span>
+                        <span> by </span>
+                        <span style={{color: "#FFB100"}}>{post.user.username}</span>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="h3" style={{backgroundColor: "#f9f9f9"}}>
                     <h5 style={{color: "#FFB100"}} className="pl-2">{postDate.toDateString()}</h5>
