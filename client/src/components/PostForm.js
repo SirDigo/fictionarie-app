@@ -10,14 +10,24 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
     //for counting Characters
     const [counter, setCounter] = useState(0)
 
-    // const { user } = useParams()
+    //loading screen state
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    function checkIfLoaded(){
+        if ( isLoaded ) {
+            return "Posted!"
+        } else if (user) {
+            return "No Submiting for the rest of today!"
+        } else {
+           return "This isn't the login/signup button."
+        }
+    }
 
     //title, body, tags
     function handleSubmit(e){
         //reloads when posted? maybe good? Except when error?
         e.preventDefault()
         setErrors([]);
-        //add setIsLoading here!
         fetch("/posts", {
             method: "POST",
             headers: {
@@ -31,13 +41,13 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
                 prompt_id: prompt.id,
             }),
         }).then((r) => {
-            //setisloading to false here!
             if (r.ok) {
                 r.json().then((newPost) => {
                     setPosts([...posts, newPost])
                     setTitle("")
                     setBody("")
                     setTags("")
+                    setIsLoaded(true)
                 });
             } else {
                 r.json().then((err) => setErrors(err.errors));
@@ -96,7 +106,9 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
             </Form.Group>
             {   user && !checkIfPosted() ? 
                 <Button variant="secondary" type="submit">Submit</Button> :
-                <Button variant="secondary" type="submit" disabled>{ user ? "No Submiting for the rest of today!" : "This isn't the login/signup button." }</Button>
+                <Button variant="secondary" type="submit" disabled>{ checkIfLoaded()
+                    /* user ?
+                //  "No Submiting for the rest of today!" : "This isn't the login/signup button." */ }</Button>
             }
             {errors.map((err) => (
                 <p key={err}>{err}</p>

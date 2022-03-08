@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
 
 
-function Signup({ setUser, setShowSignUp, setIsLoading }){
+function Signup({ setUser, setShowSignUp }){
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [errors, setErrors] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -31,7 +33,9 @@ function Signup({ setUser, setShowSignUp, setIsLoading }){
                     setShowSignUp(false)
                 });
             } else {
-                r.json().then((err) => setErrors(err.errors));
+                r.json().then((err) => {
+                    setErrors(err.errors)
+                });
             }
         });
     }
@@ -66,9 +70,10 @@ function Signup({ setUser, setShowSignUp, setIsLoading }){
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </Form.Group>
-            <Button variant="secondary" type="submit">Signup</Button>
+            <Button variant="secondary" type="submit">{isLoading ? "Loading..." : "Signup"}</Button>
             {errors.map((err) => (
-                <p key={err}>{err}</p>
+                // <p key={err} style={{color: "#f73528"}}> {err} </p>
+                console.log(err)
             ))}
         </Form>
     )

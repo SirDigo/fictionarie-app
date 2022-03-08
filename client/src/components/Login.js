@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
 
-import LoadingScreen from "./LoadingScreen";
-
-function Login({ setUser, setShowLogin, setIsLoading }){
+function Login({ setUser, setShowLogin }){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
+
+    const [isLoading, setIsLoading] = useState(false)
 
     function handleSubmit(e){
         e.preventDefault()
@@ -52,9 +52,9 @@ function Login({ setUser, setShowLogin, setIsLoading }){
                 />
             </Form.Group>
             {/*Add password confirmation here!*/}
-            <Button variant="secondary" type="submit">Login</Button>
+            <Button variant="secondary" type="submit">{isLoading ? "Loading..." : "Login"}</Button>
             {errors.map((err) => (
-                <p key={err} style={{color: "#f73528"}}>{err}</p>
+                <p key={err} style={{color: "#f73528"}}> {err}.</p>
             ))}
         </Form>
     )
