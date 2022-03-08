@@ -33,8 +33,8 @@ function App() {
         fetch("/logout", {
             method: "DELETE",
         })
-        //redirects then logs out user from wherever they're at.
-        .then(window.location.replace('/').then(setUser(null)))
+        //redirects then logs out user from wherever they're at?. window.location.replace('/').then(
+        .then(setUser(null))
     }
 
 

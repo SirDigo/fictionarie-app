@@ -23,13 +23,14 @@ function Home({ user, userPosts }){
 
     useEffect(() => {
         //fetching daily prompt
+        //${date}
         fetch(`/daily_prompt/${date}`)
         .then((r) => r.json())
         .then(data => {
             setPrompt(data)
             fetchPosts(data.id)
         })
-    }, []);
+    }, [date]);
 
     function makeDate(date){
         const newDate = new Date( date )

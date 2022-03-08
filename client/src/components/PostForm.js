@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap'
-// import { useParams } from "react-router-dom";
 
 function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [tags, setTags] = useState("");
     const [errors, setErrors] = useState([]);
+
+    //for counting Characters
+    const [counter, setCounter] = useState(0)
 
     // const { user } = useParams()
 
@@ -68,16 +70,23 @@ function PostForm({ user, prompt, setPosts, posts, checkIfPosted }){
                     <Form.Control value={tags} placeholder={user ? "Tags will be here tommorow..." : "Login for tags!"} disabled/>
                 }
             </Form.Group>
-            <Form.Group className="shadow-sm mb-3">
+            <Form.Group >
                 {/* <Form.Label>Story</Form.Label> */}
                 {   user && !checkIfPosted() ? 
+                    <>
                     <Form.Control
                         as="textarea"
                         rows={3}
                         value={body}
                         placeholder="Story..."
-                        onChange={(e) => setBody(e.target.value)}
-                    /> :
+                        maxLength={2500}
+                        onChange={(e) => {
+                            setBody(e.target.value)
+                            setCounter(e.target.value.length)
+                        }}/>
+                    <p style={{textAlign: "right", color: "#B9B9B9"}}>{counter}/2500</p>
+                    </>
+                    :
                     <Form.Control as="textarea" rows={3} value={body} placeholder={user ? "Take a break from writing for today..." : "Login to write!"} disabled/>
                 }
             </Form.Group>

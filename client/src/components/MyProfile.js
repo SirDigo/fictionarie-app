@@ -16,7 +16,7 @@ function MyProfile({ user }){
         fetch(`/users/${user.id}/posts`)
         .then((r) => r.json())
         .then(data => setPosts(data))
-    }, [])
+    }, [user.id])
 
     return (
         <Container>
