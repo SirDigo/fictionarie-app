@@ -47,12 +47,11 @@ function Post({ post, user }){
                 <div style={{padding: "10px"}}>
                     <Image roundedCircle  width="75" src={ userPic ? userPic : ProfileImage }  onClick={handleRouteChange}/>
                 </div>
-                <Card.Body>
+                <Card.Body onClick={() => { setShow(true); handleShowComments()}}>
                     <Card.Title style={{color: "#FFB100"}}>{post.title}</Card.Title>
                     <Card.Text>{cutPostBody}...
                         <Button 
                             variant="btn" 
-                            onClick={() => { setShow(true); handleShowComments()}}
                             style={{color: "#FFB100"}}
                         >Read More</Button>
                     </Card.Text>
