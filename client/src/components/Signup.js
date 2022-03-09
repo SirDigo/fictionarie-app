@@ -72,8 +72,7 @@ function Signup({ setUser, setShowSignUp }){
             </Form.Group>
             <Button variant="secondary" type="submit">{isLoading ? "Loading..." : "Signup"}</Button>
             {errors.map((err) => (
-                // <p key={err} style={{color: "#f73528"}}> {err} </p>
-                console.log(err)
+                <p key={err} style={{color: "#f73528"}}>{err}.</p>
             ))}
         </Form>
     )

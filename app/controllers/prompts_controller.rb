@@ -32,7 +32,7 @@ class PromptsController < ApplicationController
         if prompt.save
             render json: prompt, status: :ok
         else
-            render json: { errors: [prompt.errors.full_messages] }, status: :unprocessable_entity
+            render json: { errors: prompt.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

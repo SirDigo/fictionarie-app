@@ -54,7 +54,7 @@ function Login({ setUser, setShowLogin }){
             {/*Add password confirmation here!*/}
             <Button variant="secondary" type="submit">{isLoading ? "Loading..." : "Login"}</Button>
             {errors.map((err) => (
-                <p key={err} style={{color: "#f73528"}}> {err}.</p>
+                <p key={err} style={{color: "#f73528"}}>{err}.</p>
             ))}
         </Form>
     )
