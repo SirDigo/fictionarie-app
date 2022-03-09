@@ -82,7 +82,7 @@ function EditProfile(props){
                     onChange={(e) => setBio(e.target.value)}
                 />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="secondary" type="submit">
                 Save Changes
             </Button>
             {errors.map((err) => (
@@ -90,9 +90,6 @@ function EditProfile(props){
             ))}
         </Form>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
     )
 }

@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { Card, Button, Modal, Image, Col } from 'react-bootstrap'
 
 import Comment from "./Comment"
-import ProfileImage from "../download.png"
+import ProfileImage from "../assets/download.png"
 import CommentForm from "./CommentForm";
 
 function Post({ post, user }){
@@ -42,8 +42,8 @@ function Post({ post, user }){
     const cutPostBody = post.body.slice(0, 100)
 
     return (
-        <Col className="d-flex justify-content-center" >
-            <Card className="shadow-sm" style={{ width: '18rem', backgroundColor: "#f9f9f9" }}>
+        <Col className="d-flex justify-content-center">
+            <Card id="textCenter" className="shadow-sm" style={{ width: '18rem', backgroundColor: "#f9f9f9"}}>
                 <div style={{padding: "10px"}}>
                     <Image roundedCircle  width="75" src={ userPic ? userPic : ProfileImage }  onClick={handleRouteChange}/>
                 </div>

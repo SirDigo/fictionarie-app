@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
 
-import ProfileImage from "../download.png"
+import ProfileImage from "../assets/download.png"
 import Post from "./Post";
 import EditProfile from "./EditProfile";
 import LoadingScreen from "./LoadingScreen";
@@ -29,7 +29,7 @@ function MyProfile({ user }){
     return (
         <>
         { isLoading ? <LoadingScreen /> :
-            <Container>
+            <Container id="textCenter">
                 <Row style={{marginTop: "100px", marginBottom: "150px"}}>
                     <Col>
                         <h2 style={{color: "#FFB100"}}>Hello {user.username}</h2>

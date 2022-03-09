@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,3 +22,17 @@ body {
   background-repeat: no-repeat;
   /* background-size: cover; */
 }
+
+.italic {
+  font-style: italic
+}
+
+* {
+  font-family: 'Roboto Serif', serif;
+    /* font-weight: ; */
+}
+
+
+#textCenter {
+  text-align: center
+} 

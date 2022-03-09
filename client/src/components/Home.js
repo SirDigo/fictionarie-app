@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from 'uuid';
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 
 import Post from "./Post"
 import PostForm from "./PostForm"
 import LoadingScreen from "./LoadingScreen";
+
+import Logo from "../assets/Fictionarie.gif"
 
 function Home({ user, userPosts }){
 
@@ -66,15 +68,16 @@ function Home({ user, userPosts }){
 
         { isLoading ? <LoadingScreen /> :
             <Container>
-                <Row style={{marginTop: "100px", marginBottom: "100px"}}>
+                <Row style={{marginTop: "100px", marginBottom: "100px", alignItems: "flex-start" }}>
                     <Col>
-                        <h1 className="d-flex justify-content-start" style={{color: "#FFB100"}}>Fictionarie_</h1>
-                        <h5 className="d-flex justify-content-start">A prompt a day to fual your creativity...</h5>
+                        {/* <h1 className="d-flex justify-content-start" style={{color: "#FFB100"}}>Fictionarie_</h1> */}
+                        <Image className="d-flex left" style={{marginLeft: "-10px"}} width="350px" src={Logo} alt="logo gif"/>
+                        <h5 className="d-flex left italic" style={{color: "#8a8f9c"}}>A prompt a day to fual your creativity...</h5>
                         <br></br>
-                        <h4 style={{color: "#FFB100"}}>{prompt.body}</h4>
-                        <h5 className="d-flex justify-content-start">{current.toDateString()}</h5>
+                        <h4 className="d-flex left" style={{color: "#FFB100"}}>{prompt.body}</h4>
+                        <h5 className="d-flex left italic" style={{color: "#8a8f9c"}}>{current.toDateString()}</h5>
                     </Col>
-                    <Col>
+                    <Col id="textCenter">
                         <h2 style={{color: "#FFB100"}}>Write Story Below!</h2>
                         <PostForm prompt={prompt} user={user} setPosts={setPosts} posts={posts} checkIfPosted={checkIfPosted}/>
                     </Col>
