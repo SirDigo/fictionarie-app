@@ -72,17 +72,17 @@ function Home({ user, userPosts }){
                     <Col>
                         {/* <h1 className="d-flex justify-content-start" style={{color: "#FFB100"}}>Fictionarie_</h1> */}
                         <Image className="d-flex left" style={{marginLeft: "-10px"}} width="350px" src={Logo} alt="logo gif"/>
-                        <h5 className="d-flex left italic" style={{color: "#8a8f9c"}}>A prompt a day to fual your creativity...</h5>
+                        <h5 className="d-flex left italic" >A prompt a day to fual your creativity...</h5>
                         <br></br>
                         <h4 className="d-flex left" style={{color: "#FFB100"}}>{prompt.body}</h4>
-                        <h5 className="d-flex left italic" style={{color: "#8a8f9c"}}>{current.toDateString()}</h5>
+                        <h5 className="d-flex left italic" >{current.toDateString().replace(/^\S+\s/,'')}</h5>
                     </Col>
                     <Col id="textCenter">
                         <h2 style={{color: "#FFB100"}}>Write Story Below!</h2>
                         <PostForm prompt={prompt} user={user} setPosts={setPosts} posts={posts} checkIfPosted={checkIfPosted}/>
                     </Col>
                 </Row>
-                <Row md={3} className="g-4">
+                <Row  className="g-5">
                     {posts.map((post) => <Post key={uuid()} post={post} user={user}/>)}
                 </Row>
                 <br></br>

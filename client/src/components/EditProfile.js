@@ -7,7 +7,7 @@ function EditProfile(props){
     const [username, setUsername] = useState(user.username)
     const [email, setEmail] = useState(user.email)
     // const [profilePic, setProfilePic] = useState("")
-    const [bio, setBio] = useState(user.bio ? user.bio : "404 bio not found.")
+    const [bio, setBio] = useState(user.bio ? user.bio : "“You can make anything by writing.” ~ C. S. Lewis")
     const [errors, setErrors] = useState([])
     
     function handleSubmit(e){
@@ -77,7 +77,7 @@ function EditProfile(props){
                 <Form.Control 
                     as="textarea" 
                     rows={3} 
-                    placeholder={user.bio ? user.bio : "404 bio not found"}
+                    placeholder={user.bio ? user.bio : "“You can make anything by writing.” ~ C. S. Lewis"}
                     value={bio}
                     onChange={(e) => setBio(e.target.value)}
                 />

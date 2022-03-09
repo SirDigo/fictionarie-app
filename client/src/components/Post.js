@@ -39,7 +39,7 @@ function Post({ post, user }){
         window.location.replace(`/profile/${post.user.id}`)
     }
 
-    const cutPostBody = post.body.slice(0, 100)
+    const cutPostBody = post.body.slice(0, 200)
 
     return (
         <Col className="d-flex justify-content-center">

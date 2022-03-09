@@ -49,7 +49,7 @@ function Profile(){
                         <Image roundedCircle src={ProfileImage} alt="User" /> 
                     </Col> 
                     <Col style={{marginTop: "100px"}}>
-                        <h3>{thisUser.bio ? thisUser.bio : "404 bio not found"}</h3>
+                        <h3 className="newLine">{thisUser.bio ? thisUser.bio : "“You can make anything by writing.” \n ~ C. S. Lewis"}</h3>
                     </Col>
                 </Row>
                 <Row md={3} className="g-4">

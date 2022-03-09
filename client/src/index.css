@@ -32,7 +32,11 @@ body {
     /* font-weight: ; */
 }
 
-
 #textCenter {
   text-align: center
-} 
+}
+
+/* use \n for new line */
+.newLine {
+  white-space: pre-line 
+}

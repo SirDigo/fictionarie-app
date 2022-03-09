@@ -37,7 +37,7 @@ function MyProfile({ user }){
                     </Col>
                     <Col style={{marginTop: "100px"}}>
                         <Button variant="secondary" onClick={() => setEditor(true)}>Edit Profile</Button>
-                        <h3>{user.bio ? user.bio : "404 bio not found"}</h3>
+                        <h3 className="newLine">{user.bio ? user.bio : "“You can make anything by writing.” \n ~ C. S. Lewis"}</h3>
                     </Col>
                 </Row>
                 <Row md={3} className="g-4">

@@ -16,7 +16,7 @@ function Comment({ comment }){
                 <h5 style={{color: "#FFB100"}}>{comment.user.username}</h5>
                 </Col>
                 <Col >
-                    <h6 className="italic" style={{color: "#B9B9B9"}}>{commentDate.toDateString()}</h6>
+                    <h6 className="italic" style={{color: "#B9B9B9"}}>{commentDate.toDateString().replace(/^\S+\s/,'')}</h6>
                 </Col> 
             </Row>
             <Row>

@@ -7,7 +7,7 @@ function LoadingScreen(){
 
     return(
         <Row>
-            <Col style={{marginTop: "5%"}}>
+            <Col id="textCenter" style={{marginTop: "5%"}}>
                 <Image width="350px" src={Logo} alt="Coin Gif"/>
             </Col>
         </Row>
