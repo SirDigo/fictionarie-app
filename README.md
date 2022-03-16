@@ -22,7 +22,7 @@ Then either run `npm install --prefix client` or cd into client and run `npm ins
 
 ### Backend
 
-To set up the backend go into the seeds.rb and change the day_title on one of the prompts to the current date, formated as such => MONTH/DAY/YEAR => 03/15/2022 => 3152022.
+To set up the backend open the repo in your code editor and go into the seeds.rb file and change the day_title on one of the prompts to the current date, formated as such => MONTH/DAY/YEAR => 03/15/2022 => 3152022.
 
 Once that's done go ahead and create the database with `rails db:create`, then run `rails db:migrate` and `rails db:seed`. 
 
