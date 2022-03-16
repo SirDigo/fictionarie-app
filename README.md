@@ -1,32 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Fictionarie_ Is an app for people looking to write off of a prompt that updates daily.
 
-Things you may want to cover:
+## Versions
 
-* Ruby version
+* Ruby => 2.7.1
 
-* System dependencies
+* Rails => 7.0.2
 
-* Configuration
+* PostgreSQL => 1.1
 
-* Database creation
+* React => 17.0.2
 
-* Database initialization
+* Bootstrap => 5.1.3
 
-* How to run the test suite
+## How to test
 
-* Services (job queues, cache servers, search engines, etc.)
+Clone this repo onto your machine and cd into it.
+In the terminal run `bundle install`.
+Then either run `npm install --prefix client` or cd into client and run `npm install` 
 
-* Deployment instructions
+### Backend
 
-* ...
+To set up the backend go into the seeds.rb and change the day_title on one of the prompts to the current date, formated as such => MONTH/DAY/YEAR => 03/15/2022 => 3152022.
 
-## Work In Progress App
+Once that's done go ahead and create the database with `rails db:create`, then run `rails db:migrate` and `rails db:seed`. 
 
+To start the backend run `rails s`.
 
-### Demos 
+### Frontend
 
-Fictionarie_ Version 1
+To start the frontend either run `npm s --prefix client` or cd into client and run `npm s`
+
+## Demo(s) 
+
+Fictionarie_ Version 0.1
 https://www.youtube.com/watch?v=F4s-y5sUPSs
+
+**Note: This is a WIP App.**
