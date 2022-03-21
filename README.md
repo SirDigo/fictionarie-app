@@ -14,7 +14,7 @@ Fictionarie_ Is an app for people looking to write off of a prompt that updates 
 
 * Bootstrap => 5.1.3
 
-## How to test
+## Starting up the app.
 
 Clone this repo onto your machine and cd into it.
 In the terminal run `bundle install`.
