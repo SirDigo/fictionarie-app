@@ -1,6 +1,6 @@
 # README
 
-Fictionarie_ Is an app for people looking to write off of a prompt that updates daily.
+Fictionarie_ Is an app for people looking to write daily stories using a daily prompt.
 
 ## Versions
 
